@@ -1,103 +1,201 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import { 
+  TrendingUp, 
+  Users, 
+  Leaf, 
+  Droplets, 
+  Sun, 
+  Thermometer, 
+  BarChart3, 
+  Calendar,
+  AlertTriangle,
+  CheckCircle,
+  Clock,
+  Activity,
+  User
+} from "lucide-react";
+
+// Import components
+import DashboardLayout from "@/components/DashboardLayout";
+import StatsCard from "@/components/StatsCard";
+import WeatherCard from "@/components/WeatherCard";
+import ActivityCard from "@/components/ActivityCard";
+import TaskCard from "@/components/TaskCard";
+import ActionCard from "@/components/ActionCard";
+
+// Mock data for the dashboard
+const statsCards = [
+  {
+    title: "Total Crops",
+    value: "1,234",
+    change: "+12.5%",
+    changeType: "positive" as const,
+    icon: <Leaf />,
+    color: "bg-green-500"
+  },
+  {
+    title: "Active Farmers",
+    value: "456",
+    change: "+8.2%",
+    changeType: "positive" as const,
+    icon: <Users />,
+    color: "bg-blue-500"
+  },
+  {
+    title: "Water Usage",
+    value: "2.3M L",
+    change: "-5.1%",
+    changeType: "negative" as const,
+    icon: <Droplets />,
+    color: "bg-cyan-500"
+  },
+  {
+    title: "Revenue",
+    value: "$45.2K",
+    change: "+15.3%",
+    changeType: "positive" as const,
+    icon: <TrendingUp />,
+    color: "bg-emerald-500"
+  }
+];
+
+const weatherData = [
+  { label: "Temperature", value: "24°C", icon: Thermometer, color: "text-red-500" },
+  { label: "Humidity", value: "65%", icon: Droplets, color: "text-blue-500" },
+  { label: "Sunlight", value: "8.5h", icon: Sun, color: "text-yellow-500" },
+  { label: "Soil pH", value: "6.8", icon: Leaf, color: "text-green-500" }
+];
+
+const recentActivities = [
+  { 
+    title: "Crop Harvested", 
+    description: "Wheat field A-12 harvested successfully", 
+    time: "2 hours ago",
+    status: "completed" as const,
+    icon: CheckCircle
+  },
+  { 
+    title: "Irrigation Started", 
+    description: "Automated irrigation system activated", 
+    time: "4 hours ago",
+    status: "completed" as const,
+    icon: Droplets
+  },
+  { 
+    title: "Weather Alert", 
+    description: "Heavy rainfall expected in next 24 hours", 
+    time: "6 hours ago",
+    status: "warning" as const,
+    icon: AlertTriangle
+  },
+  { 
+    title: "Fertilizer Applied", 
+    description: "Nitrogen fertilizer applied to corn field", 
+    time: "1 day ago",
+    status: "completed" as const,
+    icon: Leaf
+  }
+];
+
+const upcomingTasks = [
+  { title: "Pest Control", date: "Today", priority: "high" as const },
+  { title: "Soil Testing", date: "Tomorrow", priority: "medium" as const },
+  { title: "Equipment Maintenance", date: "Dec 15", priority: "low" as const },
+  { title: "Crop Rotation", date: "Dec 20", priority: "medium" as const }
+];
+
+const quickActions = [
+  { title: "Add Crop", icon: Leaf, color: "bg-green-500" },
+  { title: "Schedule Task", icon: Calendar, color: "bg-blue-500" },
+  { title: "View Reports", icon: BarChart3, color: "bg-purple-500" },
+  { title: "Monitor Sensors", icon: Activity, color: "bg-orange-500" }
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setProfileDropdownOpen(false);
+      }
+    }
+    if (profileDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [profileDropdownOpen]);
+
+  return (
+    <DashboardLayout title="Dashboard" subtitle="Welcome to your agro management dashboard">
+      {/* Header removed: now in DashboardLayout */}
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8">
+          {statsCards.map((card, index) => (
+            <StatsCard key={index} {...card} />
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          {/* Weather & Environment */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-lg shadow-sm border p-4 lg:p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Weather & Environment</h3>
+              <div className="space-y-4">
+                {weatherData.map((item, index) => (
+                  <WeatherCard key={index} {...item} />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Recent Activities */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-lg shadow-sm border p-4 lg:p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Activities</h3>
+              <div className="space-y-4">
+                {recentActivities.map((activity, index) => (
+                  <ActivityCard key={index} {...activity} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Upcoming Tasks */}
+        <div className="mt-8">
+          <div className="bg-white rounded-lg shadow-sm border p-4 lg:p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Upcoming Tasks</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {upcomingTasks.map((task, index) => (
+                <TaskCard key={index} {...task} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="mt-8">
+          <div className="bg-white rounded-lg shadow-sm border p-4 lg:p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {quickActions.map((action, index) => (
+                <ActionCard key={index} {...action} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </DashboardLayout>
   );
 }
