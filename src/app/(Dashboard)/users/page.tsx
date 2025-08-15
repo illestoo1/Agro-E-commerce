@@ -189,7 +189,7 @@ export default function UsersPage() {
                 <tr>
                   <td colSpan={5} className="text-center py-8 text-gray-400">No users found.</td>
                 </tr>
-              ) : paginated.map((user, idx) => (
+              ) : paginated.map((user) => (
                 <tr key={user.id} className="hover:bg-gray-50">
                   <td className="px-4 py-2 whitespace-nowrap text-gray-900">{user.name}</td>
                   <td className="px-4 py-2 whitespace-nowrap text-gray-900">{user.email}</td>

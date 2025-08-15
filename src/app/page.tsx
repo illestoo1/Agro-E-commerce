@@ -12,9 +12,7 @@ import {
   Calendar,
   AlertTriangle,
   CheckCircle,
-  Clock,
-  Activity,
-  User
+  Activity
 } from "lucide-react";
 
 // Import components

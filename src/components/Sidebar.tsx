@@ -1,18 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import { 
   Package, 
   ShoppingCart, 
   Users, 
   BarChart3, 
   Settings, 
-  Menu, 
   X,
   Home,
   Leaf,
-  Droplets,
-  Calendar
+  Droplets
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 

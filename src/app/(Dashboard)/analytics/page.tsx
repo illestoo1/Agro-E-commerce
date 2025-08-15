@@ -2,7 +2,7 @@
 
 import DashboardLayout from "@/components/DashboardLayout";
 import StatsCard from "@/components/StatsCard";
-import { TrendingUp, Package, Users, DollarSign, BarChart3, PieChart, Calendar, Filter, Download, Eye, TrendingDown, ShoppingCart, Truck, Activity } from "lucide-react";
+import { Users, DollarSign, PieChart, Calendar, Filter, Download, Eye, ShoppingCart, Truck } from "lucide-react";
 import { useState } from "react";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, LineChart, Line, CartesianGrid, PieChart as RechartsPieChart, Pie, Cell, AreaChart, Area } from "recharts";
 

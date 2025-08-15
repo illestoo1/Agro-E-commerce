@@ -194,7 +194,7 @@ export default function ProductsPage() {
                 <tr>
                   <td colSpan={6} className="text-center py-8 text-gray-400">No products found.</td>
                 </tr>
-              ) : paginated.map((product, idx) => (
+              ) : paginated.map((product) => (
                 <tr key={product.id} className="hover:bg-gray-50">
                   <td className="px-4 py-2 whitespace-nowrap text-gray-900">{product.name}</td>
                   <td className="px-4 py-2 whitespace-nowrap text-gray-900">{product.category}</td>

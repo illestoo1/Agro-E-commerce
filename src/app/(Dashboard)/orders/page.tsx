@@ -48,6 +48,16 @@ const salesOrders = [
   { id: "ORD-1005", customer: "Fatima Musa", product: "Tomato", quantity: 200, total: 40000, status: "Completed", date: "2024-06-05" },
 ];
 
+type Order = {
+  id: string;
+  customer: string;
+  product: string;
+  quantity: number;
+  total: number;
+  status: string;
+  date: string;
+};
+
 function statusBadge(status: string) {
   const base = "px-2 py-1 rounded text-xs font-semibold";
   switch (status) {
@@ -61,7 +71,7 @@ function statusBadge(status: string) {
 
 interface OrderDetailsModalProps {
   open: boolean;
-  order: any;
+  order: Order | null;
   onClose: () => void;
 }
 
@@ -110,9 +120,9 @@ function ConfirmDeleteModal({ open, onConfirm, onCancel }: ConfirmDeleteModalPro
 }
 
 export default function OrdersPage() {
-  const [detailsOrder, setDetailsOrder] = useState(null);
-  const [deleteIdx, setDeleteIdx] = useState(null);
-  const [orders, setOrders] = useState(salesOrders);
+  const [detailsOrder, setDetailsOrder] = useState<Order | null>(null);
+  const [deleteIdx, setDeleteIdx] = useState<number | null>(null);
+  const [orders, setOrders] = useState<Order[]>(salesOrders);
 
   return (
     <DashboardLayout title="Agro Sales" subtitle="View and manage all sales orders in your agro management system.">

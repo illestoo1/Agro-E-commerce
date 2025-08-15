@@ -2,7 +2,7 @@
 
 import DashboardLayout from "@/components/DashboardLayout";
 import StatsCard from "@/components/StatsCard";
-import { Truck, Package, User, MapPin, Calendar, Edit, Trash2, Plus, X, Search, TrendingUp } from "lucide-react";
+import { Truck, Package, X, Edit, Trash2, Plus, Search, TrendingUp } from "lucide-react";
 import { useState } from "react";
 
 const statsCards = [
@@ -193,7 +193,7 @@ export default function DeliveriesPage() {
                 <tr>
                   <td colSpan={7} className="text-center py-8 text-gray-400">No deliveries found.</td>
                 </tr>
-              ) : paginated.map((delivery, idx) => (
+              ) : paginated.map((delivery) => (
                 <tr key={delivery.id} className="hover:bg-gray-50">
                   <td className="px-4 py-2 whitespace-nowrap text-gray-900">{delivery.id}</td>
                   <td className="px-4 py-2 whitespace-nowrap text-gray-900">{delivery.product}</td>
