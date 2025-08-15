@@ -7,7 +7,6 @@ const stats = [
     title: "Settings Changed",
     value: "3",
     change: "+0%",
-    changeType: "neutral" as const, // ✅ Works now
     icon: <Settings />,
     color: "bg-gray-500",
   },

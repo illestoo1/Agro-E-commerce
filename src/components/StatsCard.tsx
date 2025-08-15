@@ -4,7 +4,7 @@ export interface StatsCardProps {
   title: string;
   value: string;
   change: string;
-  changeType?: "neutral" | "positive" | "negative";
+  changeType?: "positive" | "negative";
   icon: React.ReactNode;
   color?: string;
 }
@@ -13,7 +13,7 @@ const StatsCard: React.FC<StatsCardProps> = ({
   title,
   value,
   change,
-  changeType = "neutral",
+  changeType,
   icon,
   color = "#3B82F6", // default Tailwind blue-500
 }) => {
