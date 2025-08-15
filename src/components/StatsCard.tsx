@@ -7,7 +7,7 @@ export interface StatsCardProps {
   color?: string; // e.g., "bg-green-500" for icon badge
   colorClass?: string; // e.g., "bg-white text-gray-900" for card container
   change?: string; // e.g., "+3.5%"
-  changeType?: "positive" | "negative";
+  changeType?: "positive" | "negative" | "neutral"; // ✅ Added neutral
 }
 
 const StatsCard: React.FC<StatsCardProps> = ({
@@ -23,11 +23,15 @@ const StatsCard: React.FC<StatsCardProps> = ({
     <div className="flex items-start justify-between">
       <div className="flex items-center gap-3">
         {icon && (
-          <div className={`p-2 rounded-md ${color ? `${color} text-white` : "bg-gray-100 text-gray-600"}`}>
+          <div
+            className={`p-2 rounded-md ${
+              color ? `${color} text-white` : "bg-gray-100 text-gray-600"
+            }`}
+          >
             {icon}
           </div>
         )}
-    <div>
+        <div>
           <div className="text-sm font-medium text-gray-600">{title}</div>
           <div className="text-2xl font-bold text-gray-900">{value}</div>
         </div>
@@ -35,7 +39,11 @@ const StatsCard: React.FC<StatsCardProps> = ({
       {change && (
         <span
           className={`text-sm font-semibold ${
-            changeType === "negative" ? "text-red-600" : "text-green-600"
+            changeType === "negative"
+              ? "text-red-600"
+              : changeType === "neutral"
+              ? "text-gray-600" // ✅ Neutral style
+              : "text-green-600"
           }`}
         >
           {change}
@@ -45,4 +53,4 @@ const StatsCard: React.FC<StatsCardProps> = ({
   </div>
 );
 
-export default StatsCard; 
+export default StatsCard;
