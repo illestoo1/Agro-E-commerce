@@ -5,18 +5,18 @@ interface StatsCardProps {
   title: string;
   value: string;
   change: string;
-  changeType: "neutral" | "positive" | "negative";
-  icon: string | React.ReactNode; // ✅ Accepts string or JSX
-  color: string;
+  changeType?: "neutral" | "positive" | "negative"; // ✅ optional with default
+  icon: string | React.ReactNode; // ✅ accepts string or JSX
+  color?: string; // ✅ optional with default
 }
 
 const StatsCard: React.FC<StatsCardProps> = ({
   title,
   value,
   change,
-  changeType,
+  changeType = "neutral",
   icon,
-  color,
+  color = "#3B82F6", // default Tailwind blue-500
 }) => {
   const changeColor =
     changeType === "positive"
@@ -35,8 +35,8 @@ const StatsCard: React.FC<StatsCardProps> = ({
         <p className="text-2xl font-bold">{value}</p>
         <p className={`text-sm font-semibold ${changeColor}`}>{change}</p>
       </div>
+
       <div className="text-3xl" style={{ color }}>
-        {/* ✅ Render either JSX icon or Iconify string */}
         {typeof icon === "string" ? <Icon icon={icon} /> : icon}
       </div>
     </div>
