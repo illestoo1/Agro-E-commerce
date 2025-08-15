@@ -98,10 +98,10 @@ const recentActivities = [
 ];
 
 const upcomingTasks = [
-  { title: "Pest Control", date: "Today", priority: "high" as const },
-  { title: "Soil Testing", date: "Tomorrow", priority: "medium" as const },
-  { title: "Equipment Maintenance", date: "Dec 15", priority: "low" as const },
-  { title: "Crop Rotation", date: "Dec 20", priority: "medium" as const }
+  { title: "Pest Control", description: "Apply pesticide to field B-7", date: "Today", priority: "high" as const },
+  { title: "Soil Testing", description: "Test soil quality in field C-3", date: "Tomorrow", priority: "medium" as const },
+  { title: "Equipment Maintenance", description: "Routine check for tractor and tools", date: "Dec 15", priority: "low" as const },
+  { title: "Crop Rotation", description: "Rotate crops in field D-2", date: "Dec 20", priority: "medium" as const }
 ];
 
 const quickActions = [
@@ -176,7 +176,14 @@ export default function Home() {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Upcoming Tasks</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {upcomingTasks.map((task, index) => (
-                <TaskCard key={index} {...task} />
+                <TaskCard
+                  key={index}
+                  title={task.title}
+                  description={task.description}
+                  dueDate={task.date}
+                  status="pending"
+                  // You can pass priority or other props if TaskCard supports them
+                />
               ))}
             </div>
           </div>
