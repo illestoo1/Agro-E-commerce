@@ -4,10 +4,10 @@ import { BarChart3, Package, Users, Truck } from "lucide-react";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, LineChart, Line, CartesianGrid } from "recharts";
 
 const stats: StatsCardProps[] = [
-  { title: "Total Orders", value: 1240, change: "+8.2%", changeType: "positive", icon: <Package />, color: "bg-blue-500" },
-  { title: "Active Users", value: 980, change: "+2.4%", changeType: "positive", icon: <Users />, color: "bg-emerald-500" },
-  { title: "Deliveries", value: 312, change: "-1.1%", changeType: "negative", icon: <Truck />, color: "bg-yellow-500" },
-  { title: "Conversion Rate", value: "4.7%", change: "+0.6%", changeType: "positive", icon: <BarChart3 />, color: "bg-purple-500" },
+  { title: "Total Orders", value: "1,240", change: "+8.2%", changeType: "positive" as const, icon: <Package />, color: "bg-blue-500" },
+  { title: "Active Users", value: "980", change: "+2.4%", changeType: "positive" as const, icon: <Users />, color: "bg-emerald-500" },
+  { title: "Deliveries", value: "312", change: "-1.1%", changeType: "negative" as const, icon: <Truck />, color: "bg-yellow-500" },
+  { title: "Conversion Rate", value: "4.7%", change: "+0.6%", changeType: "positive" as const, icon: <BarChart3 />, color: "bg-purple-500" },
 ];
 
 const deliveriesByMonth = [

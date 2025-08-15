@@ -1,13 +1,12 @@
 import React from "react";
-import { Icon } from "@iconify/react";
 
-interface StatsCardProps {
+export interface StatsCardProps {
   title: string;
   value: string;
   change: string;
-  changeType?: "neutral" | "positive" | "negative"; // ✅ optional with default
-  icon: string | React.ReactNode; // ✅ accepts string or JSX
-  color?: string; // ✅ optional with default
+  changeType?: "neutral" | "positive" | "negative";
+  icon: React.ReactNode;
+  color?: string;
 }
 
 const StatsCard: React.FC<StatsCardProps> = ({
@@ -37,7 +36,7 @@ const StatsCard: React.FC<StatsCardProps> = ({
       </div>
 
       <div className="text-3xl" style={{ color }}>
-        {typeof icon === "string" ? <Icon icon={icon} /> : icon}
+        {icon}
       </div>
     </div>
   );
