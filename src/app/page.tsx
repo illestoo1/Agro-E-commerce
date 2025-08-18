@@ -2,29 +2,27 @@
 
 import { useState, useRef, useEffect } from "react";
 import { 
-  TrendingUp, 
-  Users, 
   Leaf, 
   Droplets, 
   Sun, 
   Thermometer, 
-  BarChart3, 
-  Calendar,
+  BarChart3,
   AlertTriangle,
   CheckCircle,
   Activity,
   Package,
   DollarSign,
   ShoppingCart,
-  AlertCircle,
   Eye,
   Edit,
   Trash2,
   Plus,
   MapPin,
+  AlertCircle,
   Menu,
   X
 } from "lucide-react";
+
 import { 
   ResponsiveContainer, 
   LineChart, 
@@ -613,7 +611,7 @@ export default function Home() {
             {quickActions.map((action, index) => (
               <div key={index} className="transform transition-transform hover:scale-105 active:scale-95">
                 <ActionCard {...action} />
-              </div>
+        </div>
             ))}
           </div>
         </div>
